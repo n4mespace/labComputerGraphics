@@ -1,3 +1,3 @@
-autumn 2019
+__autumn 2019__
 
-Computer Graaphics lab
+**Computer Graaphics lab**
