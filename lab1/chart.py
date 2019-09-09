@@ -23,13 +23,14 @@ def create_square(
     canv.pack()
 
 
-def main(n, m, k):
+def main(n, m):
     app = tk.Tk()
 
+    SCALE = 1.2
     coords = [  # (x1, y1), (x2, y2), (x3, y3), (x4, y4)
         (
-            (100 * k, 100 * k), (100 * k, 300 * k),
-            (300 * k, 100 * k), (300 * k, 300 * k)
+            (100 * SCALE, 100 * SCALE), (100 * SCALE, 300 * SCALE),
+            (300 * SCALE, 100 * SCALE), (300 * SCALE, 300 * SCALE)
         ),
     ]
 
@@ -59,8 +60,6 @@ if __name__ == '__main__':
         '--n', help='Initialize num for center rotation', type=int, default=10)
     parser.add_argument(
         '--m', help='Initialize num for corner rotation', type=int, default=10)
-    parser.add_argument(
-        '--k', help='Initialize scale for chart', type=float, default=1.2)
 
     args = parser.parse_args()
-    main(args.n, args.m, args.k)
+    main(args.n, args.m)
