@@ -1,9 +1,9 @@
 **Usage:**
-built different charts with sqaures acording to params
+built different charts with sqaures acording to params\n
    [-h] [--n N] [--m M] [--k K]
 
-**Optional arguments:**
-  -h, --help  show this help message and exit
-  --n N       Initialize num for center rotation
-  --m M       Initialize num for corner rotation
-  --k K       Initialize scale for chart
+**Optional arguments:**\n
+  -h, --help  show this help message and exit\n
+  --n N       Initialize num for center rotation\n
+  --m M       Initialize num for corner rotation\n
+  --k K       Initialize scale for chart\n
