@@ -27,7 +27,7 @@ built different charts with sqaures according to params
 
 - Even more squares (n=100, m=50):
 
-![Image of one square](charts_samples/even_more_square.png)
+![Image of one square](charts_samples/even_more_squares.png)
 
 - Flower of squares (n=1000, m=30):
 
