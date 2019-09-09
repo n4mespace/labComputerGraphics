@@ -2,9 +2,7 @@
 
 built different charts with sqaures according to params
 
-```[-h] [--n N] [--m M] [--k K]```
-
-**Optional arguments:**
+**Optional params:**
 ```
 -h, --help  show this help message and exit
 
