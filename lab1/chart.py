@@ -5,11 +5,11 @@ from square import Square as model
 
 
 def create_square(
-    canv: tk.Canvas, models: model,
+    canv: tk.Canvas, mdl: model,
     angle: float, color: str,
-    center=True, k=0
+    center: bool=True, k: int=0
 ):
-    m = models[0].rotate(angle, center=center)
+    m = mdl.rotate(angle, center=center)
 
     canv.create_line(
         m[0][0]-k, m[0][1]-k, m[1][0]-k, m[1][1]-k, fill=color)
@@ -24,34 +24,29 @@ def create_square(
 
 
 def main(n, m, colors_n, colors_m):
-    app = tk.Tk()
+    window = tk.Tk()
 
     SCALE = 1.2
     coords = [  # (x1, y1), (x2, y2), (x3, y3), (x4, y4)
-        (
-            (100 * SCALE, 100 * SCALE), (100 * SCALE, 300 * SCALE),
-            (300 * SCALE, 100 * SCALE), (300 * SCALE, 300 * SCALE)
-        ),
+        (100 * SCALE, 100 * SCALE), (100 * SCALE, 300 * SCALE),
+        (300 * SCALE, 100 * SCALE), (300 * SCALE, 300 * SCALE)
     ]
 
-    models = [
-        model(a1, a2, a3, a4) for (a1, a2, a3, a4) in coords
-    ]
-
-    canv = tk.Canvas(app, width=700, height=700)
+    mdl = model(*coords)
+    canv = tk.Canvas(window, width=700, height=700)
     switch = True
 
     for angle in [math.pi / m * i for i in range(-m, m)]:
         create_square(
-            canv, models, angle, colors_m[switch], center=False)
+            canv, mdl, angle, colors_m[switch], center=False)
         switch = not switch
 
     for angle in [math.pi / n * i for i in range(-n, n)]:
         create_square(
-            canv, models, angle, colors_n[switch], k=-120)
+            canv, mdl, angle, colors_n[switch], k=-120)
         switch = not switch
 
-    app.mainloop()
+    window.mainloop()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
