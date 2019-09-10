@@ -23,7 +23,7 @@ def create_square(
     canv.pack()
 
 
-def main(n, m):
+def main(n, m, colors_n, colors_m):
     app = tk.Tk()
 
     SCALE = 1.2
@@ -43,12 +43,12 @@ def main(n, m):
 
     for angle in [math.pi / m * i for i in range(-m, m)]:
         create_square(
-            canv, models, angle, 'red' if switch else 'white', center=False)
+            canv, models, angle, colors_m[switch], center=False)
         switch = not switch
 
     for angle in [math.pi / n * i for i in range(-n, n)]:
         create_square(
-            canv, models, angle, 'black' if switch else 'red', k=-120)
+            canv, models, angle, colors_n[switch], k=-120)
         switch = not switch
 
     app.mainloop()
@@ -60,6 +60,12 @@ if __name__ == '__main__':
         '--n', help='Initialize num for center rotation', type=int, default=10)
     parser.add_argument(
         '--m', help='Initialize num for corner rotation', type=int, default=10)
+    parser.add_argument(
+        '--colors_inner', help='Initialize colors for center rotation',
+        type=str, default=['black', 'black'], nargs=2)
+    parser.add_argument(
+        '--colors_outer', help='Initialize colors for corner rotation',
+        type=str, default=['black', 'black'], nargs=2)
 
     args = parser.parse_args()
-    main(args.n, args.m)
+    main(args.n, args.m, args.colors_inner, args.colors_outer)

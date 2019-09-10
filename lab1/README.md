@@ -6,9 +6,13 @@ built different charts with sqaures according to params
 ```
 -h, --help  show this help message and exit
 
---n N       Initialize num for center rotation
+--n N            Initialize num for center rotation
 
---m M       Initialize num for corner rotation
+--m M            Initialize num for corner rotation
+
+--colors_inner   Initialize colors for center rotation
+
+--colors_outer   Initialize colors for corner rotation
 ```
 
 **Chart samples:**
