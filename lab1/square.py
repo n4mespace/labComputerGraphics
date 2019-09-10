@@ -48,3 +48,20 @@ class Square():
             ]
 
         return rotated_coords
+
+    def create_square(
+        self, canv, angle: float, color: str,
+        center: bool=True, k: int=0
+    ):
+        m = self.rotate(angle, center=center)
+
+        canv.create_line(
+            m[0][0]-k, m[0][1]-k, m[1][0]-k, m[1][1]-k, fill=color)
+        canv.create_line(
+            m[0][0]-k, m[0][1]-k, m[2][0]-k, m[2][1]-k, fill=color)
+        canv.create_line(
+            m[2][0]-k, m[2][1]-k, m[-1][0]-k, m[-1][1]-k, fill=color)
+        canv.create_line(
+            m[1][0]-k, m[1][1]-k, m[-1][0]-k, m[-1][1]-k, fill=color)
+
+        canv.pack()

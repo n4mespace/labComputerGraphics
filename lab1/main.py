@@ -4,25 +4,6 @@ import argparse
 from square import Square as model
 
 
-def create_square(
-    canv: tk.Canvas, mdl: model,
-    angle: float, color: str,
-    center: bool=True, k: int=0
-):
-    m = mdl.rotate(angle, center=center)
-
-    canv.create_line(
-        m[0][0]-k, m[0][1]-k, m[1][0]-k, m[1][1]-k, fill=color)
-    canv.create_line(
-        m[0][0]-k, m[0][1]-k, m[2][0]-k, m[2][1]-k, fill=color)
-    canv.create_line(
-        m[2][0]-k, m[2][1]-k, m[-1][0]-k, m[-1][1]-k, fill=color)
-    canv.create_line(
-        m[1][0]-k, m[1][1]-k, m[-1][0]-k, m[-1][1]-k, fill=color)
-
-    canv.pack()
-
-
 def main(n, m, colors_n, colors_m):
     window = tk.Tk()
 
@@ -37,13 +18,13 @@ def main(n, m, colors_n, colors_m):
     switch = True
 
     for angle in [math.pi / m * i for i in range(-m, m)]:
-        create_square(
-            canv, mdl, angle, colors_m[switch], center=False)
+        mdl.create_square(
+            canv, angle, colors_m[switch], center=False)
         switch = not switch
 
     for angle in [math.pi / n * i for i in range(-n, n)]:
-        create_square(
-            canv, mdl, angle, colors_n[switch], k=-120)
+        mdl.create_square(
+            canv, angle, colors_n[switch], k=-120)
         switch = not switch
 
     window.mainloop()
