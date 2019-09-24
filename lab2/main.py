@@ -4,12 +4,12 @@ import argparse
 from model import Model as model
 
 
-def main(n, colors, preset, A, B, D):
+def main(n, colors, preset, A, B, D, size):
     window = tk.Tk()
 
     formula_for_coords = {
-        'x': lambda t: (A - B) * np.cos(t) + D * np.cos((A / B) * t),
-        'y': lambda t: (A - B) * np.sin(t) - D * np.sin((A / B) * t),
+        'x': lambda t: ( (A - B) * np.cos(t) + D * np.cos((A / B) * t) ) * size,
+        'y': lambda t: ( (A - B) * np.sin(t) - D * np.sin((A / B) * t) ) * size,
     }
 
     mdl = model(formula_for_coords)
@@ -30,7 +30,7 @@ if __name__ == '__main__':
         '--n', help='Initialize num for corner rotation', type=int, default=1)
     parser.add_argument(
         '--colors', help='Initialize colors for center rotation',
-        type=str, default=['black', 'red'], nargs=2)
+        type=str, default=['black', 'black'], nargs=2)
     parser.add_argument(
         '--preset', help='Initialize some default charts',
         type=int, default=None)
@@ -40,6 +40,13 @@ if __name__ == '__main__':
         '--B', type=float, default=1)
     parser.add_argument(
         '--D', type=float, default=195)
-
+    parser.add_argument(
+        '--size', help="Scale your chart", type=float, default=0.5)
+    
     args = parser.parse_args()
-    main(args.n, args.colors, args.preset, args.A, args.B, args.D)
+    
+    main(
+        args.n, args.colors, 
+        args.preset, args.A, 
+        args.B, args.D, args.size
+        )
