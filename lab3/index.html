@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>3D Plot</title>
+
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div class="row">
+        <!-- Plotly chart will be drawn inside this DIV -->
+        <div id="plot" class="column"></div>
+        <div id="formula" class="column">
+            <img src="https://latex.codecogs.com/png.latex?\dpi{150}&space;\fn_phv&space;\large&space;z&space;=&space;(x&space;-&space;a)^2&space;/&space;a&space;-&space;(y&space;-&space;b)^2&space;/&space;b"
+                title="\large z = (x - a)^2 / a - (y - b)^2 / b" /> </br>
+                a: <input type="number" id="inputA" name="member" value=1>  </br>
+                b: <input type="number" id="inputB" name="member" value=1>  </br>
+        </div>                                                                                                                                                                                                                                                                                      
+    </div>
+    <script src="plot.js"></script>
+</body>
+
+</html>
