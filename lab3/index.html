@@ -10,6 +10,11 @@
 
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Semantic-UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
 </head>
 
 <body>
@@ -17,11 +22,20 @@
         <!-- Plotly chart will be drawn inside this DIV -->
         <div id="plot" class="column"></div>
         <div id="formula" class="column">
-            <img src="https://latex.codecogs.com/png.latex?\dpi{150}&space;\fn_phv&space;\large&space;z&space;=&space;(x&space;-&space;a)^2&space;/&space;a&space;-&space;(y&space;-&space;b)^2&space;/&space;b"
-                title="\large z = (x - a)^2 / a - (y - b)^2 / b" /> </br>
-                a: <input type="number" id="inputA" name="member" value=1>  </br>
-                b: <input type="number" id="inputB" name="member" value=1>  </br>
-        </div>                                                                                                                                                                                                                                                                                      
+            <div class="ui massive label">
+                z = (x - a)&#178; / a - (y - b)&#178; / b
+            </div>    
+            <div class="ui horizontal divider"></div>
+            <div class="ui labeled input">
+                <div class="ui label">a:</div>
+                <input type="number" id="inputA" placeholder="" value=1>
+            </div>
+            <div class="ui horizontal divider"></div>
+            <div class="ui labeled input">
+                <div class="ui label">b:</div>
+                <input type="number" id="inputB" placeholder="" value=1 >
+            </div>
+        </div>                                                                                                                                                                                                                                                                                    
     </div>
     <script src="plot.js"></script>
 </body>
