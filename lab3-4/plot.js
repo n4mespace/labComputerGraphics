@@ -228,7 +228,7 @@ window.onload = () => {
         const newCoords = newPlot.generateCoordsTable(100);
         const newSadlePoint = newPlot.sadlePoint;
 
-        Plotly.react('plot', data(newCoords, newSadlePoint), layout);
+        Plotly.react('plot3D', data(newCoords, newSadlePoint), layout);
     };
     aParam.onchange = changePlot;
     bParam.onchange = changePlot;
