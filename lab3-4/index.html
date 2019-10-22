@@ -20,7 +20,7 @@
 <body>
     <div class="row">
         <!-- Plotly chart will be drawn inside this DIV -->
-        <div id="plot" class="column"></div>
+        <div id="plot3D" class="column"></div>
         <div id="formula" class="column">
             <div class="ui massive label">
                 z = (x - a)&#178; / a - (y - b)&#178; / b
@@ -37,6 +37,32 @@
             </div>
         </div>                                                                                                                                                                                                                                                                                    
     </div>
+
+    <div class="ui horizontal divider"></div>
+    <div class="ui horizontal divider"></div>
+
+    <div class="row">
+        <div id="2Dchart" class="column"></div>
+        
+        <div class="column">
+            <div class="ui labeled input">
+                <div class="ui label">z:</div>
+                <input type="number" id="inputZ" placeholder="" value=0 >
+            </div>
+
+        </div>
+
+        <div id="info-table"></div>
+    </div>
+
+    <div class="ui horizontal divider"></div>
+    <div class="ui horizontal divider"></div>
+
+    <div class="row">
+        <div id="hist" class="column"></div>
+        <div id="pie" class="column"></div>
+    </div>
+
     <script src="plot.js"></script>
 </body>
 
