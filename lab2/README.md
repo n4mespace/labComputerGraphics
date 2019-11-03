@@ -1,6 +1,6 @@
 **Usage:**
 
-built different charts suing my variant formula according to params
+built different charts using my variant formula according to params
 
 **Optional params:**
 ```
