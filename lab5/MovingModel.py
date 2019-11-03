@@ -160,7 +160,7 @@ class MovingModel():
         '''
         Perform single rotation and refresh self.pol
         '''
-        self.coords = self._rotate(self.angle, N=300)
+        self.coords = self._rotate(self.angle)
 
         # Initialize new self.pol with rotated coords
         self.poligone = self.canvas.create_polygon(
