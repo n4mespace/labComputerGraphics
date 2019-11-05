@@ -24,8 +24,15 @@ class MovingModel():
 
         # Model which gives starting coords
         self.model = BaseModel(formulaXY)
-        self.coords = self.model.get_coords(N=300, center=center)
+        self.coords = self.model.get_coords(center=center)
 
+        # This one is for projection curve
+        self.COORDS = self.model.get_coords(center=center)
+
+        # Counter for projection curve drawing
+        self.i = 0
+
+        # Some needed params for calc
         self.center = center
         self.time = timeon
         self.angle = np.pi / 3
@@ -47,16 +54,24 @@ class MovingModel():
         '''
         return self.center
 
-    def _move(self, x: float, y: float) -> tuple:
+    def _move(self, x: float, y: float, i: int) -> tuple:
         '''
         Add speed to one tuple of coords
 
         :param x, y: tuple of coords
+        :param i: self.i which move to next coord
         :return: tuple of moved x, y
         '''
+        # Update counter and curve gen
+        if self.i == 299:
+            self.COORDS = self.model.get_coords(center=self.center)
+            self.i = 0
+
+            # Refreshing figure's 'path'
+            self.canvas.delete('all')
         return (
-            x + self.speed['x'],
-            y + self.speed['y'])
+            x + self.speed['x'] + (self.COORDS[i][0] - self.COORDS[i-1][0]),
+            y + self.speed['y'] + (self.COORDS[i][1] - self.COORDS[i-1][1]))
 
     def _move_coords(self) -> list:
         '''
@@ -64,8 +79,9 @@ class MovingModel():
 
         :return: moved with self.speed coords
         '''
+        self.i += 1  # Update movement state
         moved_coords = [
-            self._move(x, y)
+            self._move(x, y, self.i)
             for x, y
             in self.coords
             ]
@@ -112,9 +128,21 @@ class MovingModel():
 
     def movement(self) -> None:
         '''
-        Recursively clears self.canvas and add scheduled move to figure
+        Recursively clears self.canvas and add scheduled movements
         '''
+        # Clearing from outdated objects
         self.canvas.delete(self.poligone)
+
+        # Draw a movement curve
+        self.canvas.create_oval(
+            self.center[0]-1,
+            self.center[1]-1,
+            self.center[0]+1,
+            self.center[1]+1,
+            width=3, outline='grey'
+        )
+
+        # Setting timers on next movements
         self.canvas.after(self.time, self.movement)
         self.canvas.after(self.time, self._default_movement)
         self.canvas.after(self.time, self._rotation_movement)
@@ -126,7 +154,7 @@ class MovingModel():
         :param x: coord of center
         :return: true if x is out or false
         '''
-        return x >= 1150 or x <= 50
+        return x >= 1120 or x <= 80
 
     def _near_border_Y(self, y) -> bool:
         '''
@@ -135,15 +163,13 @@ class MovingModel():
         :param x: coord of center
         :return: true if y is out or false
         '''
-        return y >= 850 or y <= 50
+        return y >= 820 or y <= 80
 
     def _default_movement(self) -> None:
         '''
         Perform single move with self.speed
         and refresh self.coords
         '''
-        self.canvas.move(self.poligone, self.speed['x'], self.speed['y'])
-
         c = self.center
 
         # Check borders
@@ -154,7 +180,7 @@ class MovingModel():
 
         # Move coords and center of figure
         self.coords = self._move_coords()
-        self.center = self._move(c[0], c[1])
+        self.center = self._move(c[0], c[1], self.i)
 
     def _rotation_movement(self) -> None:
         '''

@@ -6,7 +6,7 @@ import random
 from MovingModel import MovingModel as MV_model
 
 
-def main(A, B, D, size) -> None:
+def main(A, B, D, size, after) -> None:
     '''
     Load window with 2 moving figures
 
@@ -25,8 +25,12 @@ def main(A, B, D, size) -> None:
     }
 
     # Some figures's params
-    speed_1 = {'x': 10, 'y': 5}
-    speed_2 = {'x': 5, 'y': 10}
+    speed_1 = {'x': 5, 'y': 10}
+    speed_2 = {'x': 10, 'y': 5}
+
+    # Centers of figures
+    center1 = (350, 250)
+    center2 = (750, 650)
 
     # Color for random choosing
     colors = ['black', 'yellow', 'red', 'brown', 'blue', 'violet', 'orange']
@@ -34,12 +38,12 @@ def main(A, B, D, size) -> None:
     # Create 2 models with different start points
     model1 = MV_model(
         canvas, formula_for_coords, speed_1,
-        center=(random.randint(100, 400), random.randint(100, 300)),
-        timeon=50)
+        center=center1,
+        timeon=after)
     model2 = MV_model(
         canvas, formula_for_coords, speed_2,
-        center=(random.randint(600, 1000), random.randint(500, 800)),
-        timeon=50)
+        center=center2,
+        timeon=after)
 
     def check_distance():
         '''
@@ -61,10 +65,10 @@ def main(A, B, D, size) -> None:
             model2.change_color(
                 colors[random.randint(0, len(colors)-1)])
 
-        canvas.after(50, check_distance)
+        canvas.after(after, check_distance)
 
     # Set timer for checking
-    canvas.after(50, check_distance)
+    canvas.after(after, check_distance)
 
     # Start program
     window.mainloop()
@@ -81,9 +85,11 @@ if __name__ == '__main__':
     parser.add_argument(
         '--D', type=float, default=195)
     parser.add_argument(
-        '--size', help="Scale your chart", type=float, default=0.5)
+        '--size', help="Scale your chart", type=float, default=0.4)
+    parser.add_argument(
+        '--after', help="Frame draw after some ms", type=int, default=50)
 
     args = parser.parse_args()
 
     # Starting point of main script with given params
-    main(args.A, args.B, args.D, args.size)
+    main(args.A, args.B, args.D, args.size, args.after)
