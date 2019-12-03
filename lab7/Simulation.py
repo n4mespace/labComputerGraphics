@@ -17,15 +17,17 @@ class Simulation:
 
         self.clock = pygame.time.Clock()
 
+        offset_x = -1
+        offset_y = -1
         self.vertices = [
-            Point3D(1, 0, 1),
-            Point3D(1, 0, -1),
-            Point3D(1.2, -0.5, 0),
-            Point3D(1.2, 0.5, 0),
-            Point3D(-1, 0, 1),
-            Point3D(-1, 0, -1),
-            Point3D(-1.2, -0.5, 0),
-            Point3D(-1.2, 0.5, 0),
+            Point3D(1+offset_x, 0, 1+offset_y),
+            Point3D(1+offset_x, 0, -1+offset_y),
+            Point3D(1.2+offset_x, -0.5, 0+offset_y),
+            Point3D(1.2+offset_x, 0.5, 0+offset_y),
+            Point3D(-1+offset_x, 0, 1+offset_y),
+            Point3D(-1+offset_x, 0, -1+offset_y),
+            Point3D(-1.2+offset_x, -0.5, 0+offset_y),
+            Point3D(-1.2+offset_x, 0.5, 0+offset_y),
         ]
 
         # Define the vertices that compose each of the 6 faces(sides).
